@@ -9,6 +9,7 @@ import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
+//Creamos nuestra base de datos remota
 class FirestoreUserRepositoryImpl @Inject constructor(
 
 ): UserRepository {
@@ -31,6 +32,8 @@ class FirestoreUserRepositoryImpl @Inject constructor(
     //Obtenemos usuario
     override suspend fun getUser(uid: String): User {
         return try {
+            //Firestore-colección de usuarios, al domumento uid, obtenemos usuario, lo mapeamos
+            //            a la clase usuario
             var loggedUser = User()
             FirebaseFirestore.getInstance().collection(USERS_COLLECTION)
                 .document(uid)

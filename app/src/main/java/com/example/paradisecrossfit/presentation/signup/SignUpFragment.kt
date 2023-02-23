@@ -1,6 +1,7 @@
 package com.example.paradisecrossfit.presentation.signup
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -71,12 +72,14 @@ class SignUpFragment: Fragment() {
             }
         }
     }
+    @SuppressLint("SuspiciousIndentation")
     private fun handleSignUp(){
     val email:String = binding.etEmail.text.toString()
       val password: String = binding.etPassword.text.toString()
 
         viewModel.signUp(email, password)
     }
+    //Si carga el boton signup desaparece y aparece el simbolo de carga
     private fun handleLoading(isLoading:Boolean){
         with(binding){
             if (isLoading){

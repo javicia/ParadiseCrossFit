@@ -8,16 +8,17 @@ import javax.inject.Inject
 class FirebaseAuthRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth
 ): AuthRepository {
-    override suspend fun login(email: String, password: String): Boolean {
+    override suspend fun login(email: String, password: String): String {
         return try {
-            var isSuccessful:Boolean= false
+            var userUID = ""
             firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener { isSuccessful = true }
-                .addOnFailureListener { isSuccessful = false }
+                .addOnSuccessListener {
+                     userUID = it.user?.uid?: ""
+                }
                 .await()
-            isSuccessful
+            userUID
         }catch (e: Exception){
-            false
+            ""
         }
     }
     override suspend fun signup(email: String, password: String): String {

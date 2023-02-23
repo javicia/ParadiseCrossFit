@@ -2,22 +2,34 @@ package com.example.paradisecrossfit.firebaseyt.domain.a.repository.usecase
 
 
 import com.example.paradisecrossfit.firebaseyt.domain.a.repository.AuthRepository
+import com.example.paradisecrossfit.firebaseyt.domain.a.repository.UserRepository
 import com.example.paradisecrossfit.firebaseyt.util.Resource
+import com.example.paradisecrossfit.firebaseyt.domain.a.model.User
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
-    //Repositorio de autentificación
+
 class FirebaseLoginUseCase @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val userRepository: UserRepository
 ){
-    suspend operator fun invoke(email:String, password:String): Flow <Resource<Boolean>> = flow {
+    //Regresamos usuario para que se muestre en pantalla en el home
+    suspend operator fun invoke(email:String, password:String): Flow <Resource<User>> = flow {
         emit(Resource.Loading)
-        val userUID: String = authRepository.signup(email, password)
-        //En caso de estar vacío hacemos un Succes
+        /*Realizamos el login, en vez de devolver un true o un false, nos devuelve un String que en caso
+            de estar vacío, no realizamos el login correctemente y en caso contrario, realizamos
+            el login correctemente y el String tiene el Id del usuario que inició sesión. Con ese
+            Id vamos a nuestra base de datos remota FirestoreUserRepository con la función getUser,
+            iremos a Firestore-colección de usuarios, al domumento uid, obtenemos usuario, lo mapeamos
+            a la clase usuario
+
+ */
+        val userUID : String = authRepository.login(email, password)
         if (userUID.isNotEmpty()){
-            emit(Resource.Sucess(true))
+
+            val user: User = userRepository.getUser(uid = userUID)
+            emit(Resource.Sucess(user))
             emit(Resource.Finished)
-            //En caso contrario lanza el error
         }else{
             emit(Resource.Error("Error en el acceso"))
             emit(Resource.Finished)
