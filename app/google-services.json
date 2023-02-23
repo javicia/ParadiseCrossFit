@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "300196601260",
+    "project_id": "paradisecrossfit",
+    "storage_bucket": "paradisecrossfit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300196601260:android:409b0d1a803eeb87532e09",
+        "android_client_info": {
+          "package_name": "com.example.paradisecrossfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300196601260-frd3qci874b45t7smtl5baf1p3qeltp2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCg1d_fhM9t7R54O4SpAgsb8-GJlXjBzD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300196601260-frd3qci874b45t7smtl5baf1p3qeltp2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ParadiseCrossFit</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="hello_blank_fragment">Fragmento en blanco</string>
+    <string name="login__login_button">Iniciar sesion</string>
+    <string name="login__signup_button">Registrarme</string>
+    <string name="login__password_recovery_button">Recuperar contraseña</string>
+    <string name="login__email_hint">Correo electronico</string>
+    <string name="login__password_hint">Contraseña</string>
+    <string name="login__signup_header">Registrarse</string>
+    <string name="login__password_recovery_header">¿Olvidaste tu contraseña?</string>
+</resources>
