@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:name=".firebaseyt.FirebaseApp"
+        android:name=".paradisecf.presentation.FirebaseApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ParadiseCrossFit"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".paradisecf.presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
