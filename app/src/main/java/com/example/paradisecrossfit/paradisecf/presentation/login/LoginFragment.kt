@@ -1,5 +1,6 @@
 package com.example.paradisecrossfit.paradisecf.presentation.login
 
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,7 +27,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflamos el layout en el fragment
+        // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,13 +39,13 @@ class LoginFragment : Fragment() {
         initListeners()
     }
 
-    @SuppressLint("RestrictedApi")
+
     private fun initObservers() {
         viewModel.loginState.observe(viewLifecycleOwner) { state ->
             when(state) {
                 is Resource.Sucess -> {
                     handleLoading(isLoading = false)
-                    val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(uid = state.data.uid!!)
+                    val action = LoginFragmentDirections.actionLoginFragmentToSignUpFragment()
                     findNavController().navigate(action)
                 }
                 is Resource.Error -> {
@@ -65,7 +66,7 @@ class LoginFragment : Fragment() {
         with(binding) {
             bLogin.setOnClickListener { handleLogin() }
             bSignUp.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_signUpFragment) }
-            bPasswordRecovery.setOnClickListener{findNavController().navigate(R.id.action_loginFragment_to_passwordRecoveryFragment)}
+            bPasswordRecovery.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_passwordRecoveryFragment) }
         }
     }
 

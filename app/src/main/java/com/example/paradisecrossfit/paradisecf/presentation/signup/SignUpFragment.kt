@@ -52,7 +52,7 @@ class SignUpFragment: Fragment() {
                     handleLoading(isLoading = false)
                     Toast.makeText(
                     requireContext(),
-                    "No se realizó el registro",
+                    "No se pudo realizar el registro",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -72,6 +72,7 @@ class SignUpFragment: Fragment() {
             }
         }
     }
+
     @SuppressLint("SuspiciousIndentation")
     private fun handleSignUp(){
     val email:String = binding.etEmail.text.toString()
@@ -93,6 +94,8 @@ class SignUpFragment: Fragment() {
             }
         }
     }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
