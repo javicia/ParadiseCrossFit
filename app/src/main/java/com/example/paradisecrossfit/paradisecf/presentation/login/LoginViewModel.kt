@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.auth.User
+import com.example.paradisecrossfit.paradisecf.domain.a.model.User
 import com.example.paradisecrossfit.paradisecf.domain.a.repository.usecase.FirebaseSignUpUseCase
+import com.example.paradisecrossfit.paradisecf.domain.a.repository.usecase.FirebaseLoginUseCase
 import com.example.paradisecrossfit.paradisecf.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: FirebaseSignUpUseCase
+    private val loginUseCase: FirebaseLoginUseCase
 ) :  ViewModel() {
 
     private val _loginState: MutableLiveData<Resource<User>> = MutableLiveData()
@@ -25,7 +26,7 @@ class LoginViewModel @Inject constructor(
     fun login(email: String, password: String) {
         viewModelScope.launch {
             loginUseCase(email, password).onEach { state ->
-                _loginState.value //=state
+                _loginState.value = state
             }.launchIn(viewModelScope)
         }
     }

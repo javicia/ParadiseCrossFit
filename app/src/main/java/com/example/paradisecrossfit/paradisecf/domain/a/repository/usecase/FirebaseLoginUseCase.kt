@@ -24,16 +24,16 @@ class FirebaseLoginUseCase @Inject constructor(
             a la clase usuario
 
  */
-        val userUID : String = authRepository.login(email, password)
-        if (userUID.isNotEmpty()){
+            val userUID = authRepository.login(email,password)
+            if (userUID.isNotEmpty()) {
 
-            val user: User = userRepository.getUser(uid = userUID)
-            emit(Resource.Sucess(user))
-            emit(Resource.Finished)
-        }else{
-            emit(Resource.Error("Error en el acceso"))
-            emit(Resource.Finished)
+                val user = userRepository.getUser(uid = userUID)
+
+                emit(Resource.Sucess(user))
+                emit(Resource.Finished)
+            } else {
+                emit(Resource.Error("Se ha producido un error en el login"))
+                emit(Resource.Finished)
+            }
         }
     }
-
-}

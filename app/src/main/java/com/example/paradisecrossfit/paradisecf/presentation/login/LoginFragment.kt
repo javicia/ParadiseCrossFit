@@ -15,6 +15,8 @@ import com.example.paradisecrossfit.databinding.FragmentLoginBinding
 import com.example.paradisecrossfit.paradisecf.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
+
+
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
@@ -39,13 +41,13 @@ class LoginFragment : Fragment() {
         initListeners()
     }
 
-
+    @SuppressLint("RestrictedApi")
     private fun initObservers() {
         viewModel.loginState.observe(viewLifecycleOwner) { state ->
             when(state) {
                 is Resource.Sucess -> {
                     handleLoading(isLoading = false)
-                    val action = LoginFragmentDirections.actionLoginFragmentToSignUpFragment()
+                    val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(uid = state.data.uid)
                     findNavController().navigate(action)
                 }
                 is Resource.Error -> {

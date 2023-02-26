@@ -17,14 +17,14 @@ class SignUpViewModel @Inject constructor(
     private val signUpUseCase: FirebaseSignUpUseCase
 ) :  ViewModel() {
 
-    private val _passwordSent: MutableLiveData<Resource<Boolean>> = MutableLiveData()
+    private val _signUpState: MutableLiveData<Resource<Boolean>> = MutableLiveData()
     val signUpState: LiveData<Resource<Boolean>>
-        get() = _passwordSent
+        get() = _signUpState
 
     fun signUp(email: String, password: String) {
         viewModelScope.launch {
             signUpUseCase(email, password).onEach { state ->
-                _passwordSent.value = state
+                _signUpState.value = state
             }.launchIn(viewModelScope)
         }
     }
